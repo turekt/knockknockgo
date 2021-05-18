@@ -8,12 +8,14 @@ We can extract the following fields from the IPv4 packet (limited by firewall lo
   - ACK    (4 bytes)
   - WINDOW (2 bytes)
   - SPT    (2 bytes)
+
 and from the IPv6 packet (limited by firewall log):
   - FLOWLBL(2 bytes) - ok, 20 bits actually
   - SEQ    (4 bytes)
   - ACK    (4 bytes)
   - WINDOW (2 bytes)
   - SPT    (2 bytes)
+
 Making it a total of 14 bytes of encrypted data that can be transfered to the server.
 
 ## Enter stream ciphers
