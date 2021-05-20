@@ -50,7 +50,7 @@ func newPortKnocker(ip net.IP, port uint16) (*portKnocker, error) {
 }
 
 func (pk *portKnocker) calculateData() (*kdata.KnockDataEntry, error) {
-	kcipher, err := kcrypto.New(kcrypto.Chacha20Poly1305, pk.Key, pk.NonceSalt)
+	kcipher, err := kcrypto.New(pk.Cipher, pk.Key, pk.NonceSalt)
 	if err != nil {
 		return nil, err
 	}
