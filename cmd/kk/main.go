@@ -39,7 +39,6 @@ func newPortKnocker(ip net.IP, port uint16) (*portKnocker, error) {
 		buf: gopacket.NewSerializeBuffer(),
 	}
 
-	routing.New()
 	router, err := routing.New()
 	if err != nil {
 		return nil, err

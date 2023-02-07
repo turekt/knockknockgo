@@ -35,7 +35,7 @@ func newNftFWRule(src net.IP, dpt uint16) *NftFWRule {
 		Name:     "input",
 		Hooknum:  nftables.ChainHookInput,
 		Table:    tbl,
-		Priority: 0,
+		Priority: nftables.ChainPriorityFilter,
 		Type:     nftables.ChainTypeFilter,
 		Policy:   &policyDrop,
 	}
@@ -132,9 +132,10 @@ func (n *NftFWRule) ruleMatches(r *nftables.Rule) bool {
 		return false
 	}
 
+	fam := byte(r.Table.Family)
 	for i, ex := range r.Exprs {
-		exm, _ := expr.Marshal(ex)
-		nrm, _ := expr.Marshal(n.rule.Exprs[i])
+		exm, _ := expr.Marshal(fam, ex)
+		nrm, _ := expr.Marshal(fam, n.rule.Exprs[i])
 		if !bytes.Equal(exm, nrm) {
 			return false
 		}

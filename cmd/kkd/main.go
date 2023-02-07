@@ -79,9 +79,12 @@ func monitor(profilesDir, kernLog, firewallType string) {
 		watcher.TailFile()
 	}()
 
-	if err := dropPrivileges(); err != nil {
-		log.Printf("error dropping privileges %v", err)
-	}
+	// this seems to break adding firewall rules after update
+	// unix.Setregid and unix.Setreuid now seem to affect
+	// all goroutines: https://github.com/golang/go/issues/1435
+	//if err := dropPrivileges(); err != nil {
+	//	log.Printf("error dropping privileges %v", err)
+	//}
 	wg.Add(2)
 	wg.Wait()
 	log.Printf("exit")
